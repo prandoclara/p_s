@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mpeulet <mpeulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:19:00 by claprand          #+#    #+#             */
-/*   Updated: 2024/07/12 16:15:27 by claprand         ###   ########.fr       */
+/*   Updated: 2024/07/12 22:37:44 by mpeulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,26 @@
 
 void	push(t_stack **a, t_stack **b)
 {
-	t_stack *tmp;
+	// t_stack *tmp;
 
-	if (*a == NULL)
-		return ;
+	// if (*a == NULL)
+	// 	return ;
+	// tmp = (*a)->next;
+	// (*a)->next = *b;
+	// *b = *a;
+	// *a = tmp;
+
+	t_stack	*tmp;
+
 	tmp = (*a)->next;
-	(*a)->next = *b;
-	*b = *a;
-	*a = tmp;
+	(*a)->next = (*b);
+	(*b) = (*a);
+	(*a) = tmp;
 }
 
 void	do_pa(t_stack **a, t_stack **b)
 {
-	push(b, a);
+	push(a, b);
 	ft_putstr_fd("pa\n", 1);
 }
 

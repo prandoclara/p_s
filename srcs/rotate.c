@@ -6,7 +6,7 @@
 /*   By: mpeulet <mpeulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:19:14 by claprand          #+#    #+#             */
-/*   Updated: 2024/07/12 22:05:52 by mpeulet          ###   ########.fr       */
+/*   Updated: 2024/07/12 22:29:32 by mpeulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,14 @@
 
 void	rotate(t_stack **a)
 {
-	// t_stack	*tmp;
-	// t_stack	*tail;
-
-	// tmp = *a;
-	// *a = (*a)->next;
-	// tail = stack_last(*a);
-	// tmp->next = NULL;
-	// tail->next = tmp;
 	t_stack	*tmp;
+	t_stack	*tail;
 
-	tmp = (*a);
-	(*a) = (*a)->next;
+	tmp = *a;
+	*a = (*a)->next;
+	tail = stack_last(*a);
 	tmp->next = NULL;
-	stack_last(*a)->next = tmp;
+	tail->next = tmp;
 }
 
 
