@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mpeulet <mpeulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:54:35 by claprand          #+#    #+#             */
-/*   Updated: 2024/07/12 16:08:14 by claprand         ###   ########.fr       */
+/*   Updated: 2024/07/12 21:48:58 by mpeulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,13 @@ int	main(int ac, char **av)
 	create_index(a);
 	sort(&a, &b);
 
-	t_stack *tmp;
-	tmp = a;
-	while (tmp)
-	{
-		printf("%d\n", tmp->value);
-		tmp  = tmp->next;
-	}
+	// t_stack *tmp;
+	// tmp = a;
+	// while (tmp)
+	// {
+	// 	printf("%d\n", tmp->value);
+	// 	tmp  = tmp->next;
+	// }
 	
 	freestack(&a);
 	freestack(&b);

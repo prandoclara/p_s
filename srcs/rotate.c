@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mpeulet <mpeulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:19:14 by claprand          #+#    #+#             */
-/*   Updated: 2024/07/12 15:50:05 by claprand         ###   ########.fr       */
+/*   Updated: 2024/07/12 22:05:52 by mpeulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,23 @@
 
 void	rotate(t_stack **a)
 {
-	t_stack	*tmp;
-	t_stack	*tail;
+	// t_stack	*tmp;
+	// t_stack	*tail;
 
-	tmp = *a;
-	*a = (*a)->next;
-	tail = stack_last(*a);
+	// tmp = *a;
+	// *a = (*a)->next;
+	// tail = stack_last(*a);
+	// tmp->next = NULL;
+	// tail->next = tmp;
+	t_stack	*tmp;
+
+	tmp = (*a);
+	(*a) = (*a)->next;
 	tmp->next = NULL;
-	tail->next = tmp;
+	stack_last(*a)->next = tmp;
 }
+
+
 
 void	do_ra(t_stack **a)
 {
