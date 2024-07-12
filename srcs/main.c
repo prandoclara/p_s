@@ -6,7 +6,7 @@
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:54:35 by claprand          #+#    #+#             */
-/*   Updated: 2024/07/10 16:06:12 by claprand         ###   ########.fr       */
+/*   Updated: 2024/07/12 16:08:14 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ int	main(int ac, char **av)
 {
 	t_stack	*a;
 	t_stack *b;
-	t_stack *tmp;
-	int size;
 
 	if (ac < 2)
 		return (0);
@@ -53,16 +51,15 @@ int	main(int ac, char **av)
 		exit_error(NULL, NULL);
 	b = NULL;
 	a = init_stack(ac, av);
-	size = get_stack_size(a);
-	printf("size = %d\n", size);
 	create_index(a);
 	sort(&a, &b);
 
+	t_stack *tmp;
 	tmp = a;
 	while (tmp)
 	{
 		printf("%d\n", tmp->value);
-		tmp = tmp->next;
+		tmp  = tmp->next;
 	}
 	
 	freestack(&a);

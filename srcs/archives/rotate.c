@@ -1,39 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/27 15:19:00 by claprand          #+#    #+#             */
-/*   Updated: 2024/07/10 15:42:18 by claprand         ###   ########.fr       */
+/*   Created: 2024/06/27 15:19:14 by claprand          #+#    #+#             */
+/*   Updated: 2024/07/12 15:50:05 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push(t_stack **a, t_stack **b)
+void	rotate(t_stack **a)
 {
-	t_stack *tmp;
+	t_stack	*tmp;
+	t_stack	*tail;
 
-	if (!check_lst_len(*a, 2))
-		return ;
-	if (*a == NULL)
-		return ;
-	tmp = (*a)->next;
-	(*a)->next = *b;
-	*b = *a;
-	*a = tmp;
+	tmp = *a;
+	*a = (*a)->next;
+	tail = stack_last(*a);
+	tmp->next = NULL;
+	tail->next = tmp;
 }
 
-void	do_pa(t_stack **a, t_stack **b)
+void	do_ra(t_stack **a)
 {
-	push(b, a);
-	ft_putstr_fd("pa\n", 1);
+	rotate(a);
+	ft_putstr_fd("ra\n", 1);
 }
 
-void	do_pb(t_stack **a, t_stack **b)
+void	do_rb(t_stack **b)
 {
-	push(a, b);
-	ft_putstr_fd("pb\n", 1);
+	rotate(b);
+	ft_putstr_fd("rb\n", 1);
+}
+
+void	do_rr(t_stack **a, t_stack **b)
+{
+	rotate(a);
+	rotate(b);
+	ft_putstr_fd("rr\n", 1);
 }

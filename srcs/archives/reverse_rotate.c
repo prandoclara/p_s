@@ -6,7 +6,7 @@
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:23:22 by claprand          #+#    #+#             */
-/*   Updated: 2024/07/10 15:42:02 by claprand         ###   ########.fr       */
+/*   Updated: 2024/07/12 16:14:58 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	reverse_rotate(t_stack **a)
 	t_stack *last;
 	t_stack *before_last;
 
-	if (!check_lst_len(*a, 2))
-		return ;
 	last = stack_last(*a);
 	before_last = stack_before_last(*a);
 	tmp = *a;

@@ -6,7 +6,7 @@
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 11:45:42 by claprand          #+#    #+#             */
-/*   Updated: 2024/07/10 15:41:53 by claprand         ###   ########.fr       */
+/*   Updated: 2024/07/12 16:16:52 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,21 +88,4 @@ int	get_maxbits(int size)
 	while (max_index >> max_bits != 0)
 		++max_bits;
 	return (max_bits);
-}
-
-int		check_lst_len(t_stack *stack, int len)
-{
-	int	i;
-
-	i = 0;
-	while (stack != NULL)
-	{
-		stack = stack->next;
-		i++;
-		if (i >= len)
-			break ;
-	}
-	if (i < len)
-		return (0);
-	return (1);
 }

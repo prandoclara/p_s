@@ -22,22 +22,22 @@ void	sort_tiny(t_stack **stack)
 		return ;
 	highest = find_highest_index(*stack);
 	if ((*stack)->index == highest)
-		do_ra(stack);
+		ps_rotate_up(stack, STACK_A);
 	else if ((*stack)->next->index == highest)
-		do_rra(stack);
+		ps_rotate_down(stack, STACK_A);
 	if ((*stack)->index > (*stack)->next->index)
-		do_sa(stack);
+		ps_swap(*stack, STACK_A);
 }
 
 
 void	sort_four(t_stack **a, t_stack **b)
 {
 	while ((*a)->index != 3)
-		do_ra(a);
-	do_pb(a, b);
+		ps_rotate_up(a, STACK_A);
+	ps_push(b, a, STACK_B);
 	sort_tiny(a);
-	do_pa(b, a);
-	do_rra(a);
+	ps_push(a, b, STACK_A);
+	ps_rotate_up(a, STACK_A);
 }
 
 void	sort_five(t_stack **a, t_stack **b)
@@ -45,51 +45,50 @@ void	sort_five(t_stack **a, t_stack **b)
 	if (stack_last(*a)->index == 3 || (*a)->next->next->next->index == 3)
 	{
 		while ((*a)->index != 3)
-			do_ra(a);
-		do_pa(b, a);
+			ps_rotate_down(a, STACK_A);
+		ps_push(b, a, STACK_B);
 	}
 	else
 	{
 		while ((*a)->index != 3)
-			do_rra(a);
-		do_pa(b, a);
+			ps_rotate_up(a, STACK_A);
+		ps_push(b, a, STACK_B);
 	}
 	if (stack_last(*a)->index == 4)
-		do_ra(a);
+		ps_rotate_down(a, STACK_A);
 	while ((*a)->index != 4)
-		do_rra(a);
-	do_pa(b, a);
+		ps_rotate_up(a, STACK_A);
+	ps_push(b, a, STACK_B);
 	sort_tiny(a);
-	do_pb(a, b);
-	do_pb(a, b);
-	do_rra(a);
-	do_rra(a);
+	ps_push(a, b, STACK_A);
+	ps_push(a, b, STACK_A);
+	ps_rotate_up(a, STACK_A);
+	ps_rotate_up(a, STACK_A);
 }
+
 
 void	radix_sort(t_stack **a, t_stack **b)
 {
-	int max_bits;
-	int i; 
 	int size;
+	int max_bits;
+	int i;
 	int j;
 
 	i = 0;
-	j = 0;
 	size = get_stack_size(*a);
 	max_bits = get_maxbits(size);
 	while (i < max_bits)
 	{
 		j = 0;
-		while (j < size)
+		while (++j < size)
 		{
 			if ((((*a)->index >> i) & 1) == 1)
-				do_rra(a);
+				ps_rotate_up(a, STACK_A);
 			else
-				do_pa(a, b);
-			j++;
+				ps_push(b, a, STACK_B);
 		}
 		while (get_stack_size(*b) != 0)
-			do_pb(a, b);
+			ps_push(a, b, STACK_A);
 		i++;
 	}
 }
