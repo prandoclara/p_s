@@ -6,7 +6,7 @@
 /*   By: mpeulet <mpeulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:54:35 by claprand          #+#    #+#             */
-/*   Updated: 2024/07/12 21:48:58 by mpeulet          ###   ########.fr       */
+/*   Updated: 2024/07/12 23:12:20 by mpeulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	sort(t_stack **a, t_stack **b)
 {
 	int size;
 
+	if (is_sorted(*a))
+		return ;
 	size = get_stack_size(*a);
 	if (size == 1)
 		return ;
