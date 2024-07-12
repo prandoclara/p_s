@@ -45,19 +45,19 @@ void	sort_five(t_stack **a, t_stack **b)
 	if (stack_last(*a)->index == 3 || (*a)->next->next->next->index == 3)
 	{
 		while ((*a)->index != 3)
-			do_ra(a);
+			do_rra(a);
 		do_pb(a, b);
 	}
 	else
 	{
 		while ((*a)->index != 3)
-			do_rra(a);
-		do_pa(b, a);
+			do_ra(a);
+		do_pb(a, b);
 	}
 	if (stack_last(*a)->index == 4)
-		do_rra(a);
-	while ((*a)->index != 4)
 		do_ra(a);
+	while ((*a)->index != 4)
+		do_rra(a);
 	do_pb(a, b);
 	sort_tiny(a);
 	do_pa(b, a);
