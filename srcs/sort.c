@@ -14,6 +14,20 @@ static int	find_highest_index(t_stack *stack)
 	return (index);
 }
 
+static int	find_lowest_index(t_stack *stack)
+{
+	int		index;
+
+	index = stack->index;
+	while (stack)
+	{
+		if (stack->index < index)
+			index = stack->index;
+		stack = stack->next;
+	}
+	return (index);
+}
+
 void	sort_tiny(t_stack **stack)
 {
 	int		highest;
@@ -40,32 +54,57 @@ void	sort_four(t_stack **a, t_stack **b)
 	do_ra(a);
 }
 
+// void	sort_five(t_stack **a, t_stack **b)
+// {
+// 	if (stack_last(*a)->index == 3 || (*a)->next->next->next->index == 3)
+// 	{
+// 		while ((*a)->index != 3)
+// 			do_rra(a);
+// 		do_pb(a, b);
+// 	}
+// 	else
+// 	{
+// 		while ((*a)->index != 3)
+// 			do_ra(a);
+// 		do_pb(a, b);
+// 	}
+// 	if (stack_last(*a)->index == 4)
+// 		do_ra(a);
+// 	while ((*a)->index != 4)
+// 		do_rra(a);
+// 	do_pb(a, b);
+// 	sort_tiny(a);
+// 	do_pa(b, a);
+// 	do_pa(b, a);
+// 	do_ra(a);
+// 	do_ra(a);
+// }
+
 void	sort_five(t_stack **a, t_stack **b)
 {
-	if (stack_last(*a)->index == 3 || (*a)->next->next->next->index == 3)
+	int	size_a;
+	int	min;
+	// int	max;
+
+	min = find_lowest_index(*a);
+	// max = find_highest_index(*a);
+	size_a = get_stack_size(*a);
+	while (size_a > 3)
 	{
-		while ((*a)->index != 3)
-			do_rra(a);
+		while (min > 0)
+		{
+			if (min == size_a - 1 || min == size_a - 2)
+				do_rra(a);
+			else
+				do_ra(a);
+		}
 		do_pb(a, b);
+		size_a--;
 	}
-	else
-	{
-		while ((*a)->index != 3)
-			do_ra(a);
-		do_pb(a, b);
-	}
-	if (stack_last(*a)->index == 4)
-		do_ra(a);
-	while ((*a)->index != 4)
-		do_rra(a);
-	do_pb(a, b);
 	sort_tiny(a);
 	do_pa(b, a);
 	do_pa(b, a);
-	do_ra(a);
-	do_ra(a);
 }
-
 
 void	radix_sort(t_stack **a, t_stack **b)
 {
