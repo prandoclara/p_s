@@ -6,7 +6,7 @@
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:53:27 by claprand          #+#    #+#             */
-/*   Updated: 2024/07/15 10:51:28 by claprand         ###   ########.fr       */
+/*   Updated: 2024/07/15 11:11:11 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <limits.h>
-# include "libft.h"
 
 # define STACK_A 0
 # define STACK_B 1

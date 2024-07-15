@@ -6,7 +6,7 @@
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:19:06 by claprand          #+#    #+#             */
-/*   Updated: 2024/07/15 10:34:26 by claprand         ###   ########.fr       */
+/*   Updated: 2024/07/15 11:16:16 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	do_swap(t_stack **stack, int id)
 	(*stack)->next->value = (*stack)->value;
 	(*stack)->value = value;
 	if (id == STACK_A)
-		ft_printf("sa\n");
+		write(1, "sa\n", 3);
 	else
-		ft_printf("sb\n");
+		write(1, "sb\n", 3);
 }

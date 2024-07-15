@@ -6,7 +6,7 @@
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:19:14 by claprand          #+#    #+#             */
-/*   Updated: 2024/07/15 10:51:41 by claprand         ###   ########.fr       */
+/*   Updated: 2024/07/15 11:16:05 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	do_rotate(t_stack **stack, int id)
 	tmp->next = NULL;
 	stack_last(*stack)->next = tmp;
 	if (id == STACK_A)
-		ft_printf("ra\n");
+		write(1, "ra\n", 3);
 	else
-		ft_printf("rb\n");
+		write(1, "rb\n", 3);
 }
