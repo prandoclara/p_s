@@ -1,8 +1,5 @@
 NAME = push_swap
 
-LIBFT_DIR = ./libft
-LIBFT = $(LIBFT_DIR)/libft.a
-
 CC = cc
 INCLUDES = -I./$(LIBFT_DIR)/include -I./include
 CFLAGS = -Wall -Wextra -Werror -g3 $(INCLUDES)
@@ -15,12 +12,11 @@ OBJS_DIR = ./obj
 SRCS = $(wildcard $(SRCS_DIR)/*.c)
 OBJS = $(patsubst $(SRCS_DIR)/%.c, $(OBJS_DIR)/%.o, $(SRCS))
 
-LIBFT_FLAGS = -L$(LIBFT_DIR) -lft
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_FLAGS)
+$(NAME): $(OBJS)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c | $(OBJS_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -28,17 +24,12 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c | $(OBJS_DIR)
 $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)
 
-$(LIBFT):
-	@$(MAKE) -sC $(LIBFT_DIR)
-
 clean:
 	@rm -f $(OBJS_DIR)/*.o
 	@rmdir $(OBJS_DIR)
-	@$(MAKE) -sC $(LIBFT_DIR) clean 
 
 fclean: clean
 	rm -f $(NAME)
-	$(MAKE) -sC $(LIBFT_DIR) fclean
 
 re: fclean all
 
