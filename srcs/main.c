@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpeulet <mpeulet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:54:35 by claprand          #+#    #+#             */
-/*   Updated: 2024/07/12 23:12:20 by mpeulet          ###   ########.fr       */
+/*   Updated: 2024/07/15 10:44:25 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	is_sorted(t_stack *a)
 
 void	sort(t_stack **a, t_stack **b)
 {
-	int size;
+	int	size;
 
 	if (is_sorted(*a))
 		return ;
@@ -45,7 +45,7 @@ void	sort(t_stack **a, t_stack **b)
 int	main(int ac, char **av)
 {
 	t_stack	*a;
-	t_stack *b;
+	t_stack	*b;
 
 	if (ac < 2)
 		return (0);
@@ -53,17 +53,8 @@ int	main(int ac, char **av)
 		exit_error(NULL, NULL);
 	b = NULL;
 	a = init_stack(ac, av);
-	create_index(a);
+	create_index(a, get_stack_size(a), INT_MIN);
 	sort(&a, &b);
-
-	// t_stack *tmp;
-	// tmp = a;
-	// while (tmp)
-	// {
-	// 	printf("%d\n", tmp->value);
-	// 	tmp  = tmp->next;
-	// }
-	
 	freestack(&a);
 	freestack(&b);
 	return (0);

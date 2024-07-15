@@ -6,21 +6,19 @@
 /*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 15:08:14 by claprand          #+#    #+#             */
-/*   Updated: 2024/07/12 14:39:49 by claprand         ###   ########.fr       */
+/*   Updated: 2024/07/15 11:00:03 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	create_index(t_stack *stack)
+void	create_index(t_stack *stack, int size, int value)
 {
-	int	size;
-	t_stack *ptr;
-	t_stack *highest;
-	int	value;
+	t_stack	*ptr;
+	t_stack	*highest;
 
 	size = get_stack_size(stack);
-	while(--size > 0)
+	while (--size > 0)
 	{
 		ptr = stack;
 		value = INT_MIN;
