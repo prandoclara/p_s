@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/15 10:28:49 by claprand          #+#    #+#             */
+/*   Updated: 2024/07/15 10:33:50 by claprand         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static int	find_highest_index(t_stack *stack)
@@ -14,20 +26,6 @@ static int	find_highest_index(t_stack *stack)
 	return (index);
 }
 
-static int	find_lowest_index(t_stack *stack)
-{
-	int		index;
-
-	index = stack->index;
-	while (stack)
-	{
-		if (stack->index < index)
-			index = stack->index;
-		stack = stack->next;
-	}
-	return (index);
-}
-
 void	sort_tiny(t_stack **stack)
 {
 	int		highest;
@@ -36,98 +34,73 @@ void	sort_tiny(t_stack **stack)
 		return ;
 	highest = find_highest_index(*stack);
 	if ((*stack)->index == highest)
-		do_ra(stack);
+		do_rotate(stack, STACK_A);
 	else if ((*stack)->next->index == highest)
-		do_rra(stack);
+		do_reverse_rotate(stack, STACK_A);
 	if ((*stack)->index > (*stack)->next->index)
-		do_sa(stack);
+		do_swap(stack, STACK_A);
 }
-
 
 void	sort_four(t_stack **a, t_stack **b)
 {
 	while ((*a)->index != 3)
-		do_ra(a);
-	do_pb(a, b);
+		do_rotate(a, STACK_A);
+	do_push(b, a, STACK_B);
 	sort_tiny(a);
-	do_pa(b, a);
-	do_ra(a);
+	do_push(a, b, STACK_A);
+	do_rotate(a, STACK_A);
 }
-
-// void	sort_five(t_stack **a, t_stack **b)
-// {
-// 	if (stack_last(*a)->index == 3 || (*a)->next->next->next->index == 3)
-// 	{
-// 		while ((*a)->index != 3)
-// 			do_rra(a);
-// 		do_pb(a, b);
-// 	}
-// 	else
-// 	{
-// 		while ((*a)->index != 3)
-// 			do_ra(a);
-// 		do_pb(a, b);
-// 	}
-// 	if (stack_last(*a)->index == 4)
-// 		do_ra(a);
-// 	while ((*a)->index != 4)
-// 		do_rra(a);
-// 	do_pb(a, b);
-// 	sort_tiny(a);
-// 	do_pa(b, a);
-// 	do_pa(b, a);
-// 	do_ra(a);
-// 	do_ra(a);
-// }
 
 void	sort_five(t_stack **a, t_stack **b)
 {
-	int	size_a;
-	int	min;
-	// int	max;
-
-	min = find_lowest_index(*a);
-	// max = find_highest_index(*a);
-	size_a = get_stack_size(*a);
-	while (size_a > 3)
+	if (stack_last(*a)->index == 3 || (*a)->next->next->next->index == 3)
 	{
-		while (min > 0)
-		{
-			if (min == size_a - 1 || min == size_a - 2)
-				do_rra(a);
-			else
-				do_ra(a);
-		}
-		do_pb(a, b);
-		size_a--;
+		while ((*a)->index != 3)
+			do_reverse_rotate(a, STACK_A);
+		do_push(b, a, STACK_B);
 	}
+	else
+	{
+		while ((*a)->index != 3)
+			do_rotate(a, STACK_A);
+		do_push(b, a, STACK_B);
+	}
+	if (stack_last(*a)->index == 4)
+		do_reverse_rotate(a, STACK_A);
+	while ((*a)->index != 4)
+		do_rotate(a, STACK_A);
+	do_push(b, a, STACK_B);
 	sort_tiny(a);
-	do_pa(b, a);
-	do_pa(b, a);
+	do_push(a, b, STACK_A);
+	do_push(a, b, STACK_A);
+	do_rotate(a, STACK_A);
+	do_rotate(a, STACK_A);
 }
 
 void	radix_sort(t_stack **a, t_stack **b)
 {
-	int size;
-	int max_bits;
-	int i;
-	int j;
+	int	size;
+	int	max_bits;
+	int	i;
+	int	j;
 
 	i = 0;
+	j = 0;
 	size = get_stack_size(*a);
 	max_bits = get_maxbits(size);
 	while (i < max_bits)
 	{
 		j = 0;
-		while (++j < size)
+		while (j < size)
 		{
 			if ((((*a)->index >> i) & 1) == 1)
-				do_ra(a);
+				do_rotate(a, STACK_A);
 			else
-				do_pb(a, b);
+				do_push(b, a, STACK_B);
+			j++;
 		}
 		while (get_stack_size(*b) != 0)
-			do_pa(b, a);
+			do_push(a, b, STACK_A);
 		i++;
 	}
 }

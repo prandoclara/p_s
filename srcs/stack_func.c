@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_func.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpeulet <mpeulet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: claprand <claprand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:28:04 by claprand          #+#    #+#             */
-/*   Updated: 2024/07/12 21:20:43 by mpeulet          ###   ########.fr       */
+/*   Updated: 2024/07/15 10:34:16 by claprand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ t_stack	*stack_last(t_stack *a)
 
 t_stack	*stack_before_last(t_stack *a)
 {
-	while(a && a->next && a->next->next != NULL)
+	while (a && a->next && a->next->next != NULL)
 		a = a->next;
-	return(a);
+	return (a);
 }
 
 void	stack_add_back(t_stack **a, t_stack *nb)
